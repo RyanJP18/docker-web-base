@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+
+    database:
+        image: mysql:8.0.1
+        container_name: RENAME-mysql
+        environment: 
+            MYSQL_ROOT_PASSWORD: root
+        volumes: 
+            - ./backend/database/persistent-data:/var/lib/mysql
+        restart: always
+        networks:
+            - RENAME
+            
+    database-viewer:
+        image: adminer
+        restart: always
+        container_name: RENAME-adminer
+        environment:
+            - ADMINER_DEFAULT_SERVER=database
+            - ADMINER_DESIGN=hydra
+        ports:
+            - 8080:8080
+        networks:
+            - RENAME
+
+    backend:
+        build:
+            context: './backend/'
+            args:
+                uid: ${UID}
+        container_name: RENAME-backend
+        volumes:
+            - ./backend/:/var/www/html
+        restart: always
+        ports:
+            - 8000:8000
+        networks:
+            - RENAME
+
+    frontend:
+        build: 
+            context: './frontend/'
+        container_name: RENAME-frontend
+        restart: always        
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./frontend/:/app
+            - /app/node_modules
+            - ./frontend/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./frontend/nginx/ssl/:/etc/nginx/ssl
+        networks:
+            - RENAME
+        
+
+networks:
+    RENAME:
+        name: RENAME
+        driver: bridge
