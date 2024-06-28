@@ -8,4 +8,4 @@ RUN yarn install
 EXPOSE 80
 EXPOSE 2222 
 
-CMD ["sh", "./start-yarn.sh"]
+CMD ["yarn", "dev", "--port=80", "--host"]

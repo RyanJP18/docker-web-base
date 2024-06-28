@@ -10,7 +10,7 @@ const loading = ref(true);
 
 
 const search = () => {
-	const url = "http://172.20.0.5/api/targets";
+	const url = "http://localhost:8000/api/targets";
 
 	const options = {
 		method: "GET",
