@@ -26,5 +26,3 @@ Homestead.json
 .editorconfig
 composer.lock
 storage
-
-persistent-data/

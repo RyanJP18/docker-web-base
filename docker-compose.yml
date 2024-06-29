@@ -8,7 +8,7 @@ services:
         environment: 
             MYSQL_ROOT_PASSWORD: root
         volumes: 
-            - ./backend/database/persistent-data:/var/lib/mysql
+            - ./database/database/persistent-data:/var/lib/mysql
         restart: always
         networks:
             - RENAME
