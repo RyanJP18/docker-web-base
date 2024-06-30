@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue';
+
+import { ref, computed, onBeforeMount } from 'vue';
 import Banner from './components/Banner.vue'
 import LoadingSpinner from './components/LoadingSpinner.vue'
 import NoteCard from './components/NoteCard.vue'
@@ -11,61 +12,83 @@ import type { INote } from './interfaces/INote';
 const notes = ref([] as INote[]);
 const loading = ref(true);
 
-
 const apiPath = 'http://localhost:8000/api';
+const headers = { Accept: 'application/json', 'Content-Type': 'application/json;charset=UTF-8' };
 
-const search = () => {
-	const url = apiPath + '/notes';
 
-	const options = {
-		method: "GET",
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json;charset=UTF-8",
-		}
-	};
+const search = ref('');
+const filteredNotes = computed(() => notes.value.filter(n => n.title.includes(search.value) || n.content.includes(search.value) ));
 
-	notes.value.length = 0;
+
+const pullNotes = async () => {
 	loading.value = true;
-
-	fetch(url, options)
-		.then((response) => response.json())
-		.then((data) => {
-			notes.value = data;
-			loading.value = false;
+	fetch(apiPath + '/notes', { method: 'GET', headers: headers })
+		.then((response) => {
+			if (!response.ok) {
+				return response.text().then(text => {
+					throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
+				});
+			}
+			return response.json();
 		})
-		.catch(() => {
-			loading.value = false;
-		});
+		.then((data) => notes.value = data)
+		.catch((error) => alert(error))
+		.finally(() => loading.value = false);
 };
 
+const uploadNote = async (note: INote) => {
+	loading.value = true;
+	fetch(apiPath + '/notes', { method: 'POST', headers: headers, body: JSON.stringify(note) })
+		.then((response) => {
+			if (!response.ok) {
+				return response.text().then(text => {
+					throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
+				});
+			}
+			return response.json();
+		})
+		.then((data) => notes.value.push(data))
+		.catch((error) => alert(error))
+		.finally(() => loading.value = false);
+};
 
-const uploadNote = (note: INote) => {
-	const url = apiPath + '/notes';
-
-	console.log(JSON.stringify(note));
-
-	const options = {
-		method: "POST",
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(note)
-	};
-
-	fetch(url, options)
-		.then((response) => response.json())
+const updateNote = async (note: INote) => {
+	loading.value = true;
+	fetch(apiPath + '/notes/' + note.id, { method: 'PATCH', headers: headers, body: JSON.stringify(note) })
+		.then((response) => {
+			if (!response.ok) {
+				return response.text().then(text => {
+					throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
+				});
+			}
+			return response.json();
+		})
 		.then((data) => {})
-		.catch(() => {
-			loading.value = false;
-		});
+		.catch((error) => alert(error))
+		.finally(() => loading.value = false);
+};
+
+const removeNote = async (note: INote) => {
+	loading.value = true;
+	fetch(apiPath + '/notes/' + note.id, { method: 'DELETE', headers: headers })
+		.then((response) => {
+			if (!response.ok) {
+				return response.text().then(text => {
+					throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
+				});
+			}
+			
+			notes.value = notes.value.filter(n => n !== note);
+		})
+		.catch((error) => alert(error))
+		.finally(() => loading.value = false);
 };
 
 
-onBeforeMount(() => search());
+onBeforeMount(() => pullNotes());
 
 </script>
+
 
 <template>
 	<div class="na-app">
@@ -73,16 +96,16 @@ onBeforeMount(() => search());
 		<LoadingSpinner :loading="loading" />
 		
 		<div class="na-app_Content">
-			<NoteCard title="todo" content="- hook this up to the backend - list rendering - the ability to click in and edit" />
-			<NoteCard title="don't forget" content="- Add sass to docker base - add backend .env to docker base / copy over migration work"  />
+			<input v-model="search" />
+			<!-- <NoteCard title="todo" content="- list rendering " />
 			<NoteCard title="apps" content="- show file differences"  />
-			<NoteCard title="learned" content="- use curl to test api paths"  />
-			<NoteCard :key="note.id" v-for="note in notes" :title="note.title" :content="note.content" />
+			<NoteCard title="learned" content="- use curl to test api paths"  /> -->
+			<NoteCard :key="note.id" v-for="note in filteredNotes" :note="note" @submit="updateNote($event)" @remove="removeNote($event)" />
 			<NewNote @submit="uploadNote($event)" />
 		</div>
 	</div>
-	
 </template>
+
 
 <style scoped lang="scss">
 
@@ -92,10 +115,10 @@ onBeforeMount(() => search());
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+    cursor: pointer;
 
 	&_Content {
-		width: 620px;
-		max-width: 100%;
+		width: 100%;
 		flex-grow: 1;
 		display: flex;
 		align-items: center;

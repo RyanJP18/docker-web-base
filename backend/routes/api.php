@@ -23,4 +23,6 @@ Route::controller(NoteController::class)
     ->prefix('notes')->group(function() {
         Route::get('', 'index');
         Route::post('', 'store');
+        Route::patch('{note}', 'update');
+        Route::delete('{note}', 'destroy');
     });

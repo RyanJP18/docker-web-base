@@ -2,7 +2,6 @@
 
 import { ref } from 'vue';
 
-
 const emit = defineEmits(['submit']);
 
 
@@ -11,15 +10,22 @@ const showContent = ref(false);
 const title = ref('');
 const content = ref('');
 
+
+const submit = () => {
+    showContent.value = false;
+
+    emit('submit', { 'title': title.value, 'content': content.value });
+};
+
 </script>
 
 
 <template>
-    <div class="na-nn" @click="showContent = !showContent">
+    <div class="na-nn" @click="showContent = !showContent" @keydown.enter="submit">
         <div v-if="showContent" @click.stop>
             <input v-model="title" placeholder="Title" />
             <input v-model="content" placeholder="Content" />
-            <button @click="emit('submit', { 'title': title, 'content': content })">Submit</button>
+            <button @click="submit">Submit</button>
         </div>
         <div v-else>
             Click to add note...
@@ -42,10 +48,14 @@ const content = ref('');
     font-size: 13px;
     cursor: pointer;
 
-    & > p:first-of-type {
-        font-weight: bold;
-        margin-bottom: 8px;
-        font-size: 18px;
+    & input {
+        width: 100%;
+
+        &:first-of-type {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
     }
 }
 
