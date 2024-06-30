@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TargetController;
+use App\Http\Controllers\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('targets')->controller(TargetController::class)->group(function() {
-    Route::get('', 'index');
-    Route::get('/search_mirna/{mirna_id}', 'search_mirna');
-    Route::get('/search_transcript/{transcript_id}', 'search_transcript');
-});
+Route::controller(NoteController::class)
+    ->prefix('notes')->group(function() {
+        Route::get('', 'index');
+        Route::post('', 'store');
+    });
