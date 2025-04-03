@@ -5,7 +5,6 @@ import Banner from './components/Banner.vue'
 import LoadingSpinner from './components/LoadingSpinner.vue'
 import NoteCard from './components/NoteCard.vue'
 import NewNote from './components/NewNote.vue'
-import type { IExample } from './interfaces/IExample';
 import type { INote } from './interfaces/INote';
 
 
@@ -14,7 +13,6 @@ const loading = ref(true);
 
 const apiPath = 'http://localhost:8000/api';
 const headers = { Accept: 'application/json', 'Content-Type': 'application/json;charset=UTF-8' };
-
 
 const search = ref('');
 const filteredNotes = computed(() => notes.value.filter(n => n.title.includes(search.value) || n.content.includes(search.value) ));
@@ -97,9 +95,6 @@ onBeforeMount(() => pullNotes());
 		
 		<div class="na-app_Content">
 			<input v-model="search" />
-			<!-- <NoteCard title="todo" content="- list rendering " />
-			<NoteCard title="apps" content="- show file differences"  />
-			<NoteCard title="learned" content="- use curl to test api paths"  /> -->
 			<NoteCard :key="note.id" v-for="note in filteredNotes" :note="note" @submit="updateNote($event)" @remove="removeNote($event)" />
 			<NewNote @submit="uploadNote($event)" />
 		</div>

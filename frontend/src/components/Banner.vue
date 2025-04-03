@@ -2,7 +2,6 @@
     <div class="banner">
         <p class="main">Wel<span class="highlight">c</span>ome</p>
         <p class="sub"><span class="highlight">v</span>1.0.0</p>
-        <!-- <p class="footer">Last build 2023.09.26</p> -->
     </div>
 </template>
 
