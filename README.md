@@ -1,3 +1,13 @@
+- [About](#about)
+- [First Time Setup](#first-time-setup)
+  - [Running the Docker Containers](#running-the-docker-containers)
+  - [Setting up and Seeding the Backend](#setting-up-and-seeding-the-backend)
+  - [Fixing Potential Storage Permissions Issues](#fixing-potential-storage-permissions-issues)
+  - [Recommended Customisations and Improvements](#recommended-customisations-and-improvements)
+  - [Useful Links](#useful-links)
+- [Deployment](#deployment)
+  - [Generate SSL Certificates](#generate-ssl-certificates)
+
 # About
 This is a base for automatically setting up a Docker / TypeScript / Vue / PHP / Laravel stack. It will produce `frontend`, `backend`, `database` and `database-viewer` containers, all within the same docker network, and with communication between them set up in a fairly default state.
 
