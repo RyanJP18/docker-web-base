@@ -3,8 +3,10 @@
   - [Running the Docker Containers](#running-the-docker-containers)
   - [Setting up and Seeding the Backend](#setting-up-and-seeding-the-backend)
   - [Fixing Potential Storage Permissions Issues](#fixing-potential-storage-permissions-issues)
-  - [Recommended Customisations and Improvements](#recommended-customisations-and-improvements)
   - [Useful Links](#useful-links)
+- [Linting and Testing](#linting-and-testing)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
 - [Deployment](#deployment)
   - [Generate SSL Certificates](#generate-ssl-certificates)
 
@@ -18,6 +20,8 @@ It is recommended that prior to making any significant changes, you complete the
 3) Log in to database and create the `RENAME` database (see below) 
 4) Set up and seed the backend (see below)
 5) Open `http://localhost/` in the browser and check it works
+6) Find and replace all references to `RENAME` with desired app name (note: you will need to create and seed the database again with the new name)
+7) Rename the `docker-web-base` solution itself
 
 ## Running the Docker Containers
 1) Open a terminal and run `cd path/to/docker-web-base`
@@ -38,18 +42,27 @@ If you receive a permissions error, try the following:
 3) Run `bash container`
 4) Run `chown -R devuser:www-data ./storage && chmod -R 775 ./storage`
 
-## Recommended Customisations and Improvements
-- Find and replace all references to `RENAME` with desired app name (note: you will need to create and seed the database again with the new name)
-- Rename the `docker-web-base` solution itself
-- Replace and reskin the frontend as required (see `frontend/App.vue` for a starting point)
-- Replace and implement backend handling as required (see `backend/api.php` for a starting point)
-- Set up linting and testing (may add this by default to docker-web-base in the future)
-
 ## Useful Links
 - Frontend address: `http://localhost`
 - Backend API address: `http://localhost:8000/api/`
 - Database login: `http://localhost:8080`
 - See the `backend/.env` file for database login details
+
+# Linting and Testing
+
+## Backend
+1) Ensure the Docker containers are running first
+2) In a terminal, run `cd backend`
+3) Run `bash container`
+4) To run the linter, run `composer lint`
+5) To run tests (from the `backend/tests` directory), run `composer test`
+
+## Frontend
+1) Ensure the Docker containers are running first
+2) In a terminal, run `cd frontend`
+3) Run `bash container`
+4) To run the linter, run `yarn lint`
+5) There is presently no frontend test framework set up; however, the `vitest` and `cypress` packages are recommended for a basic setup
 
 # Deployment
 Basic production configuration files are included when the tool is ready to be deployed. For a basic setup:

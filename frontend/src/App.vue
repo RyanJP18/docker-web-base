@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
 import { ref, computed, onBeforeMount } from 'vue';
-import Banner from './components/Banner.vue'
-import LoadingSpinner from './components/LoadingSpinner.vue'
-import NoteCard from './components/NoteCard.vue'
-import NewNote from './components/NewNote.vue'
+import Banner from './components/PageBanner.vue';
+import LoadingSpinner from './components/LoadingSpinner.vue';
+import NoteCard from './components/NoteCard.vue';
+import NewNote from './components/NewNote.vue';
 import type { INote } from './interfaces/INote';
 
 
@@ -19,67 +19,67 @@ const filteredNotes = computed(() => notes.value.filter(n => n.title.includes(se
 
 
 const pullNotes = async () => {
-	loading.value = true;
-	fetch(apiPath + '/notes', { method: 'GET', headers: headers })
-		.then((response) => {
-			if (!response.ok) {
-				return response.text().then(text => {
-					throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
-				});
-			}
-			return response.json();
-		})
-		.then((data) => notes.value = data)
-		.catch((error) => alert(error))
-		.finally(() => loading.value = false);
+    loading.value = true;
+    fetch(apiPath + '/notes', { method: 'GET', headers: headers })
+        .then((response) => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
+                });
+            }
+            return response.json();
+        })
+        .then((data) => notes.value = data)
+        .catch((error) => alert(error))
+        .finally(() => loading.value = false);
 };
 
 const uploadNote = async (note: INote) => {
-	loading.value = true;
-	fetch(apiPath + '/notes', { method: 'POST', headers: headers, body: JSON.stringify(note) })
-		.then((response) => {
-			if (!response.ok) {
-				return response.text().then(text => {
-					throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
-				});
-			}
-			return response.json();
-		})
-		.then((data) => notes.value.push(data))
-		.catch((error) => alert(error))
-		.finally(() => loading.value = false);
+    loading.value = true;
+    fetch(apiPath + '/notes', { method: 'POST', headers: headers, body: JSON.stringify(note) })
+        .then((response) => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
+                });
+            }
+            return response.json();
+        })
+        .then((data) => notes.value.push(data))
+        .catch((error) => alert(error))
+        .finally(() => loading.value = false);
 };
 
 const updateNote = async (note: INote) => {
-	loading.value = true;
-	fetch(apiPath + '/notes/' + note.id, { method: 'PATCH', headers: headers, body: JSON.stringify(note) })
-		.then((response) => {
-			if (!response.ok) {
-				return response.text().then(text => {
-					throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
-				});
-			}
-			return response.json();
-		})
-		.then((data) => {})
-		.catch((error) => alert(error))
-		.finally(() => loading.value = false);
+    loading.value = true;
+    fetch(apiPath + '/notes/' + note.id, { method: 'PATCH', headers: headers, body: JSON.stringify(note) })
+        .then((response) => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
+                });
+            }
+            return response.json();
+        })
+        .then(() => {})
+        .catch((error) => alert(error))
+        .finally(() => loading.value = false);
 };
 
 const removeNote = async (note: INote) => {
-	loading.value = true;
-	fetch(apiPath + '/notes/' + note.id, { method: 'DELETE', headers: headers })
-		.then((response) => {
-			if (!response.ok) {
-				return response.text().then(text => {
-					throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
-				});
-			}
+    loading.value = true;
+    fetch(apiPath + '/notes/' + note.id, { method: 'DELETE', headers: headers })
+        .then((response) => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
+                });
+            }
 			
-			notes.value = notes.value.filter(n => n !== note);
-		})
-		.catch((error) => alert(error))
-		.finally(() => loading.value = false);
+            notes.value = notes.value.filter(n => n !== note);
+        })
+        .catch((error) => alert(error))
+        .finally(() => loading.value = false);
 };
 
 
@@ -89,16 +89,21 @@ onBeforeMount(() => pullNotes());
 
 
 <template>
-	<div class="na-app">
-		<Banner />
-		<LoadingSpinner :loading="loading" />
+    <div class="na-app">
+        <Banner />
+        <LoadingSpinner :loading="loading" />
 		
-		<div class="na-app_Content">
-			<input v-model="search" />
-			<NoteCard :key="note.id" v-for="note in filteredNotes" :note="note" @submit="updateNote($event)" @remove="removeNote($event)" />
-			<NewNote @submit="uploadNote($event)" />
-		</div>
-	</div>
+        <div class="na-app_Content">
+            <input v-model="search" />
+            <NoteCard
+                :key="note.id"
+                v-for="note in filteredNotes"
+                :note="note"
+                @submit="updateNote($event)"
+                @remove="removeNote($event)" />
+            <NewNote @submit="uploadNote($event)" />
+        </div>
+    </div>
 </template>
 
 

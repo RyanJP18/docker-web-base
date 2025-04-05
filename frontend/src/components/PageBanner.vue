@@ -1,12 +1,12 @@
 <template>
-    <div class="banner">
+    <div class="pageBanner">
         <p class="main">Wel<span class="highlight">c</span>ome</p>
         <p class="sub"><span class="highlight">v</span>1.0.0</p>
     </div>
 </template>
 
 <style scoped>
-.banner {
+.pageBanner {
 	width: 100%;
 	background-color: #000;
 	color: #fff;
@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.banner > p {
+.pageBanner > p {
 	color: #fff;
     margin: 0;
     text-align: left;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{ loading: boolean }>()
+defineProps<{ loading: boolean }>();
 </script>
 
 
