@@ -1,3 +1,4 @@
+# app setup
 FROM node:21-alpine as build
 
 COPY . /app
@@ -8,8 +9,7 @@ RUN yarn install --frozen-lockfile
 RUN yarn build
 
 
-
-
+# nginx setup
 FROM nginx:stable-alpine
 
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf

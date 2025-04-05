@@ -57,8 +57,8 @@ Basic production configuration files are included when the tool is ready to be d
 2) Follow steps provided by your web hosting provider to set up a virtual machine and update DNS records from your domain registrar
 3) Access the server (i.e. virtual machine) you purchased from your web hosting provider
 4) Copy your repo to the server machine (e.g. via `git clone`)
-5) Rename `Dockerfile` to `Dockerfile-DEVELOPMENT` 
-6) Rename `Dockerfile-PRODUCTION` to `Dockerfile`
+5) In both `frontend/` and `backend/`, rename the `Dockerfile` files to `Dockerfile-DEVELOPMENT` 
+6) Likewise, in both, rename `Dockerfile-PRODUCTION` to `Dockerfile`
 7) Perform the instructions from "First Time Setup"
 8) Generate SSL certificates (see below)
 

@@ -4,19 +4,19 @@ FROM php:8.4-fpm-alpine
 RUN apk --no-cache add \
     bash shadow \
     && docker-php-ext-install pdo pdo_mysql
-
-# # copy over files
+    
+# copy over files
 WORKDIR /var/www/backend
 COPY . .
 
 # composer setup
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
 
-# # user permissions and file ownership
-RUN mkdir -p ./storage/logs ./bootstrap/cache
+# user permissions and file ownership
+RUN mkdir -p /var/www/html/storage/logs /var/www/html/bootstrap/cache
 RUN groupadd -g 1000 devgroup && useradd -m -u 1000 -g devgroup devuser
-RUN chown -R devuser:devgroup ./ && chmod -R 775 ./storage ./bootstrap/cache
+RUN chown -R devuser:devgroup /var/www/html && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 USER devuser
 
 # start
