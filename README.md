@@ -17,10 +17,10 @@ This is a base for automatically setting up a Docker / TypeScript / Vue / PHP / 
 It is recommended that prior to making any significant changes, you complete these steps to run the app and test it works:
 1) Install the `docker` and `docker-compose` packages if you do not already have them
 2) Run the containers (see below)
-3) Log in to database and create the `RENAME` database (see below) 
+3) Log in to database and create the `RENAME` and `RENAME-test` databases (see below) 
 4) Set up and seed the backend (see below)
 5) Open `http://localhost/` in the browser and check it works
-6) Find and replace all references to `RENAME` with desired app name (note: you will need to create and seed the database again with the new name)
+6) Find and replace all references to `RENAME` with desired app name (note: you will need to create and seed the databases again with the new names)
 7) Rename the `docker-web-base` solution itself
 
 ## Running the Docker Containers
