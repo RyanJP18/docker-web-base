@@ -9,6 +9,11 @@ class NoteSeeder extends Seeder
 {
     public function run()
     {
-        NoteFactory::new()->create();
+        NoteFactory::new()->create([
+            'title' => 'Welcome', 
+            'content' => 'See README.md for next steps',
+        ]);
+
+        NoteFactory::new()->count(3)->create();
     }
 }

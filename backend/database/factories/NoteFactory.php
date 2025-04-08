@@ -15,8 +15,8 @@ class NoteFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => 'title',
-            'content' => 'content',
+            'title' => $this->faker->word(),
+            'content' => implode(' ', $this->faker->words(mt_rand(5, 10))),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
