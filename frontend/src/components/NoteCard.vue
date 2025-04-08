@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { ref } from 'vue';
-import type { INote } from './interfaces/INote';
+import type { INote } from '@/interfaces/INote';
 
 const props = withDefaults(defineProps<{
     note: INote;
@@ -27,7 +27,7 @@ const submit = () => {
 
 
 <template>
-    <div class="na-nc" @click="editCard = !editCard" @keydown.enter="submit">
+    <div class="dwb-nc" @click="editCard = !editCard" @keydown.enter="submit">
         <div v-if="!editCard">
             <p>{{ title }}</p>
             <p>{{ content }}</p>
@@ -44,21 +44,34 @@ const submit = () => {
 
 <style scoped lang="scss">
 
-.na-nc {
+.dwb-nc {
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 160px;
+    width: 260px;
+    height: 200px;
     background-color: white;
     border: 1px solid lightgray;
     padding: 8px;
     border-radius: 8px;
     font-size: 13px;
+    overflow: hidden;
+    cursor: pointer;
 
     & p:first-of-type {
         font-weight: bold;
         margin-bottom: 8px;
         font-size: 18px;
+    }
+
+    & button {
+        background-color: red;
+        padding: 0;
+        width: 30px;
+        line-height: 13px;
+        height: 18px;
+        color: white;
+        font-size: 13px;
+        font-weight: bold;
     }
 
     & input {

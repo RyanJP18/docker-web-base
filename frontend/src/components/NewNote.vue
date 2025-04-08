@@ -21,7 +21,7 @@ const submit = () => {
 
 
 <template>
-    <div class="na-nn" @click="showContent = !showContent" @keydown.enter="submit">
+    <div class="dwb-nn" @click="showContent = !showContent" @keydown.enter="submit">
         <div v-if="showContent" @click.stop>
             <input v-model="title" placeholder="Title" />
             <input v-model="content" placeholder="Content" />
@@ -36,7 +36,7 @@ const submit = () => {
 
 <style scoped lang="scss">
 
-.na-nn {
+.dwb-nn {
     display: flex;
     flex-direction: column;
     width: 200px;
