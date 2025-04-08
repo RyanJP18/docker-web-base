@@ -12,7 +12,7 @@ class NoteProjector extends Projector
 {
     public function onNoteCreated(NoteCreated $event): void
     {
-        (new Note())->writeable()->create([
+        (new Note)->writeable()->create([
             'id' => $event->aggregateRootUuid(),
             'title' => $event->title,
             'content' => $event->content,
@@ -27,7 +27,7 @@ class NoteProjector extends Projector
 
         $note->writeable()->update([
             'title' => $event->title,
-            'content' => $event->content
+            'content' => $event->content,
         ]);
     }
 

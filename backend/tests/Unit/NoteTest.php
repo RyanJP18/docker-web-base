@@ -7,7 +7,6 @@ beforeEach(function () {
     $this->note = Note::factory()->create();
 });
 
-
 it('has a get api route', function () {
     $response = $this->getJson('/api/notes')->assertOk();
 
@@ -25,20 +24,17 @@ it('has a store api route', function () {
 
 it('has an update api route', function () {
     $updatedFields = [
-        'title' => 'new title', 
-        'content' => 'new content'
+        'title' => 'new title',
+        'content' => 'new content',
     ];
-
 
     $response = $this->patchJson(action([NoteController::class, 'update'], $this->note->id), $updatedFields);
 
     $response->assertSuccessful();
 });
 
-
 it('has a delete api route', function () {
     $response = $this->deleteJson(action([NoteController::class, 'update'], $this->note->id));
 
     $response->assertSuccessful();
 });
-

@@ -34,7 +34,7 @@ class NoteAggregate extends AggregateRoot
 
     protected function delete(DeleteNote $command): static
     {
-        $this->recordThat(new NoteDeleted());
+        $this->recordThat(new NoteDeleted);
 
         return $this;
     }

@@ -9,13 +9,13 @@ use App\Domain\Note\Note;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
 use Illuminate\Validation\ValidationException;
+
 use function App\Console\command;
 
 class NoteController extends Controller
 {
-    public function index() 
+    public function index()
     {
         return response()->json(Note::all());
     }
@@ -25,7 +25,7 @@ class NoteController extends Controller
         try {
             $validatedData = request()->validate([
                 'title' => 'required|string',
-                'content' => 'string'
+                'content' => 'string',
             ]);
 
             $ulid = Str::ulid();
@@ -51,7 +51,7 @@ class NoteController extends Controller
         try {
             $validatedData = request()->validate([
                 'title' => 'required|string',
-                'content' => 'string'
+                'content' => 'string',
             ]);
 
             command(new UpdateNote(
@@ -76,7 +76,7 @@ class NoteController extends Controller
             command(new DeleteNote(
                 $note->id
             ));
-    
+
             return response()->json(status: 204);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to update note'], 500);

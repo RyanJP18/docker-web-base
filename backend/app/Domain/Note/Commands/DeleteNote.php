@@ -16,6 +16,5 @@ class DeleteNote implements Command
      */
     public function __construct(
         #[AggregateUuid] public string $id
-    ) {
-    }
+    ) {}
 }

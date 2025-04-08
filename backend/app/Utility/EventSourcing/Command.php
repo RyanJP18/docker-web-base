@@ -2,6 +2,4 @@
 
 namespace App\Utility\EventSourcing;
 
-interface Command
-{
-}
+interface Command {}

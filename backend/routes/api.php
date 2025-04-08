@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(NoteController::class)
-    ->prefix('notes')->group(function() {
+    ->prefix('notes')->group(function () {
         Route::get('', 'index');
         Route::post('', 'store');
         Route::patch('{note}', 'update');

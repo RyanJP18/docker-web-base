@@ -18,6 +18,5 @@ class UpdateNote implements Command
         #[AggregateUuid] public string $id,
         public string $title,
         public string $content,
-    ) {
-    }
+    ) {}
 }

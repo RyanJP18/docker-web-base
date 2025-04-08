@@ -9,6 +9,5 @@ final class NoteCreated extends ShouldBeStored
     public function __construct(
         public string $title,
         public string $content,
-    ) {
-    }
+    ) {}
 }
