@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { ref, computed, onBeforeMount } from "vue";
-import LoadingSpinner from "@/components/LoadingSpinner.vue";
-import NoteCard from "@/components/NoteCard.vue";
-import NewNote from "@/components/NewNote.vue";
-import type { INote } from "@/interfaces/INote";
+import { ref, computed, onBeforeMount } from 'vue';
+import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import NoteCard from '@/components/NoteCard.vue';
+import NewNote from '@/components/NewNote.vue';
+import type { INote } from '@/interfaces/INote';
 
 
 const notes = ref([] as INote[]);
 const loading = ref(true);
 
-const apiPath = "http://localhost:8000/api";
+const apiPath = 'http://localhost:8000/api';
 const headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json;charset=UTF-8",
+    'Accept': 'application/json',
+    'Content-Type': 'application/json;charset=UTF-8',
 };
 
-const search = ref("");
+const search = ref('');
 const filteredNotes = computed(() =>
     notes.value.filter((note) =>
         note.title.toLowerCase().includes(search.value.toLowerCase()) || 
@@ -25,7 +25,7 @@ const filteredNotes = computed(() =>
 
 const pullNotes = async () => {
     loading.value = true;
-    fetch(apiPath + "/notes", { method: "GET", headers: headers })
+    fetch(apiPath + '/notes', { method: 'GET', headers: headers })
         .then((response) => {
             if (!response.ok) {
                 return response.text().then((text) => {
@@ -41,8 +41,8 @@ const pullNotes = async () => {
 
 const uploadNote = async (note: INote) => {
     loading.value = true;
-    fetch(apiPath + "/notes", {
-        method: "POST",
+    fetch(apiPath + '/notes', {
+        method: 'POST',
         headers: headers,
         body: JSON.stringify(note),
     })
@@ -61,8 +61,8 @@ const uploadNote = async (note: INote) => {
 
 const updateNote = async (note: INote) => {
     loading.value = true;
-    fetch(apiPath + "/notes/" + note.id, {
-        method: "PATCH",
+    fetch(apiPath + '/notes/' + note.id, {
+        method: 'PATCH',
         headers: headers,
         body: JSON.stringify(note),
     })
@@ -81,7 +81,7 @@ const updateNote = async (note: INote) => {
 
 const removeNote = async (note: INote) => {
     loading.value = true;
-    fetch(apiPath + "/notes/" + note.id, { method: "DELETE", headers: headers })
+    fetch(apiPath + '/notes/' + note.id, { method: 'DELETE', headers: headers })
         .then((response) => {
             if (!response.ok) {
                 return response.text().then((text) => {
