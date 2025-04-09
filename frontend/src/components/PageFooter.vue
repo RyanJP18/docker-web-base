@@ -1,12 +1,12 @@
 <template>
-    <div class="dwb-pf">
-        <div class="dwb-pf_Block">
-            <p class="dwb-pf_Block_Header">About</p>
-            <p class="dwb-pf_Block_Link">This is a base for automatically constructing a Docker network consisting of a TypeScript/Vue SPA and headless PHP/Laravel API with basic configuration, testing and deployment.</p>
+    <div class="pf">
+        <div class="pf_Block">
+            <p class="pf_Block_Header">About</p>
+            <p class="pf_Block_Link">This is a base for automatically constructing a Docker network consisting of a TypeScript/Vue SPA and headless PHP/Laravel API with basic configuration, testing and deployment.</p>
         </div>
-        <div class="dwb-pf_Block">
-            <p class="dwb-pf_Block_Header">Bugs & Requests</p>
-            <p class="dwb-pf_Block_Link">If you have any issues or suggestions, please file them on the <a href="https://github.com/RyanJP18/docker-web-base" target="_blank">docker-web-base</a> issue tracker.</p>
+        <div class="pf_Block">
+            <p class="pf_Block_Header">Bugs & Requests</p>
+            <p class="pf_Block_Link">If you have any issues or suggestions, please file them on the <a href="https://github.com/RyanJP18/docker-vue-laravel-starter" target="_blank">docker-vue-laravel-starter</a> issue tracker.</p>
         </div>
     </div>
 </template>
@@ -14,7 +14,7 @@
 
 <style scoped lang="scss">
 
-.dwb-pf {
+.pf {
 	width: 100%;
 	background-color: #0d313a;
 	color: #fff;

@@ -27,15 +27,15 @@ const submit = () => {
 
 
 <template>
-    <div class="dwb-nc" @click="editCard = !editCard" @keydown.enter="submit">
+    <div class="nc" @click="editCard = !editCard" @keydown.enter="submit">
         <div v-if="!editCard">
-            <div class="dwb-nc_Header">
+            <div class="nc_Header">
                 <p>{{ title }}</p>
                 <button @click.stop="emit('remove', note)">✖</button>
             </div>
             <p>{{ content }}</p>
         </div>
-        <div class="dwb-nc_Edit" @click.stop v-else>
+        <div class="nc_Edit" @click.stop v-else>
             <input v-model="title" placeholder="Title" />
             <textarea v-model="content" placeholder="Content" rows="5"/>
             <button @click="submit">Submit</button>
@@ -46,7 +46,7 @@ const submit = () => {
 
 <style scoped lang="scss">
 
-.dwb-nc {
+.nc {
     display: flex;
     flex-direction: column;
     width: 260px;

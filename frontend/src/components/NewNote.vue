@@ -21,20 +21,20 @@ const submit = () => {
 
 
 <template>
-    <div class="dwb-nn" @click="showContent = !showContent" @keydown.enter="submit">
-        <div class="dwb-nn_Edit" v-if="showContent" @click.stop>
+    <div class="nn" @click="showContent = !showContent" @keydown.enter="submit">
+        <div class="nn_Edit" v-if="showContent" @click.stop>
             <input v-model="title" placeholder="Title" />
             <textarea v-model="content" placeholder="Content" rows="5" />
             <button @click="submit">Submit</button>
         </div>
-        <div class="dwb-nn_Add" v-else>Click to add note...</div>
+        <div class="nn_Add" v-else>Click to add note...</div>
     </div>
 </template>
 
 
 <style scoped lang="scss">
 
-.dwb-nn {
+.nn {
     display: flex;
     flex-direction: column;
     justify-content: center;

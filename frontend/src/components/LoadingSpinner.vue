@@ -9,7 +9,7 @@ withDefaults(defineProps<{
 
 
 <template>
-    <div class="dwb-ls" :class="loading ? '' : 'hidden'">
+    <div class="ls" :class="loading ? '' : 'hidden'">
         <div></div>
         <div></div>
         <div></div>
@@ -20,7 +20,7 @@ withDefaults(defineProps<{
 
 <style scoped lang="scss">
 
-.dwb-ls {
+.ls {
     display: inline-block;
     position: relative;
     width: 80px;

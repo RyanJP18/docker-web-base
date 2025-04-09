@@ -6,7 +6,7 @@ import PageFooter from '@/components/PageFooter.vue';
 
 
 <template>
-    <div class="dwb-app">
+    <div class="app">
         <PatternCube />
         <PageHeader />
         <router-view />     
@@ -17,7 +17,7 @@ import PageFooter from '@/components/PageFooter.vue';
 
 <style scoped lang="scss">
 
-.dwb-app {
+.app {
     height: 100vh;
     font-family: "Raleway";
     display: flex;

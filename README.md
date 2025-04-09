@@ -21,10 +21,10 @@ It is recommended that prior to making any significant changes, you complete the
 4) Set up and seed the backend (see below)
 5) Open `http://localhost/` in the browser and check it works
 6) Find and replace all references to `RENAME` with desired app name (note: you will need to create and seed the databases again with the new names)
-7) Rename the `docker-web-base` solution itself
+7) Rename the `docker-vue-laravel-starter` solution itself
 
 ## Running the Docker Containers
-1) Open a terminal and run `cd path/to/docker-web-base`
+1) Open a terminal and run `cd path/to/docker-vue-laravel-starter`
 2) Run `systemctl start docker`
 3) Run `docker-compose up`
 

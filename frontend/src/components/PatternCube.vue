@@ -1,5 +1,5 @@
 <template>
-    <svg class="dwb-pc" width="100%" height="100%" style="opacity: 0.3">
+    <svg class="pc" width="100%" height="100%" style="opacity: 0.3">
         <defs>
             <pattern
                 id="pattern-cube"
@@ -10,8 +10,8 @@
                 height="200"
                 viewBox="0 0 10 16"> 
                 <g id="cube">
-                    <path class="dwb-pc_Left" d="M0 0l5 3v5l-5 -3z"></path>
-                    <path class="dwb-pc_Right" d="M10 0l-5 3v5l5 -3"></path>
+                    <path class="pc_Left" d="M0 0l5 3v5l-5 -3z"></path>
+                    <path class="pc_Right" d="M10 0l-5 3v5l5 -3"></path>
                 </g>
                 <use x="5" y="8" href="#cube"></use>
                 <use x="-5" y="8" href="#cube"></use>
@@ -29,7 +29,7 @@
 
 <style scoped lang="scss">
 
-.dwb-pc {
+.pc {
     position: absolute;
     top: 0;
     left: 0;

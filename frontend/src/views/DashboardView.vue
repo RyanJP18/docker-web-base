@@ -102,10 +102,10 @@ onBeforeMount(() => pullNotes());
 
 
 <template>
-    <div class="dwb-dv">
+    <div class="dv">
         <input v-model="search" placeholder="Start typing to filter notes..." />
         <LoadingSpinner :loading="loading" />
-        <div class="dwb-dv_Cards">
+        <div class="dv_Cards">
             <NoteCard
                 :key="note.id"
                 v-for="note in filteredNotes"
@@ -120,7 +120,7 @@ onBeforeMount(() => pullNotes());
 
 
 <style scoped lang="scss">
-.dwb-dv {
+.dv {
     width: 100%;
     height: 100%;
     display: flex;
