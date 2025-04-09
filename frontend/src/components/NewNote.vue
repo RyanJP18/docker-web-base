@@ -22,14 +22,12 @@ const submit = () => {
 
 <template>
     <div class="dwb-nn" @click="showContent = !showContent" @keydown.enter="submit">
-        <div v-if="showContent" @click.stop>
+        <div class="dwb-nn_Edit" v-if="showContent" @click.stop>
             <input v-model="title" placeholder="Title" />
-            <input v-model="content" placeholder="Content" />
+            <textarea v-model="content" placeholder="Content" rows="5" />
             <button @click="submit">Submit</button>
         </div>
-        <div v-else>
-            Click to add note...
-        </div>
+        <div class="dwb-nn_Add" v-else>Click to add note...</div>
     </div>
 </template>
 
@@ -39,23 +37,52 @@ const submit = () => {
 .dwb-nn {
     display: flex;
     flex-direction: column;
-    width: 200px;
-    height: 160px;
+    justify-content: center;
+    align-items: center;
+    width: 260px;
+    height: 200px;
     background-color: white;
-    border: 1px solid lightgray;
+    border: 1px solid #eee;
     padding: 8px;
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
 
-    & input {
-        width: 100%;
+    &:hover {
+        background-color: #baf7ed;
+    }
 
-        &:first-of-type {
+    &_Edit {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    
+        & > input {
+            width: 100%;
             font-weight: bold;
-            margin-bottom: 8px;
             font-size: 18px;
+            color: #0e7f6c;
         }
+
+        & > textarea {
+            width: 100%;
+        }
+
+        & > button {
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #0e7f6c;
+            border-radius: 6px;
+            color: white;
+            padding: 6px;
+        }
+    }
+
+    &_Add {
+        color: #0e7f6c;
     }
 }
 

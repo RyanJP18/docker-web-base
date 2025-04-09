@@ -1,5 +1,15 @@
+<script setup lang="ts">
+
+const props = withDefaults(defineProps<{
+    loading: boolean;
+}>(), {
+});
+
+</script>
+
+
 <template>
-    <div class="loadingSpinner">
+    <div class="dwb-ls" :class="loading ? '' : 'hidden'">
         <div></div>
         <div></div>
         <div></div>
@@ -15,7 +25,12 @@
     position: relative;
     width: 80px;
     height: 80px;
-    color: #0e7f6c;
+    color: #17d4b4;
+    margin-top: 20px;
+
+    &.hidden {
+        visibility: hidden;
+    }
 
     & div {
         position: absolute;

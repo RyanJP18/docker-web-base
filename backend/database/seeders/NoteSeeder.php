@@ -11,9 +11,9 @@ class NoteSeeder extends Seeder
     {
         NoteFactory::new()->create([
             'title' => 'Welcome', 
-            'content' => 'See README.md for next steps',
+            'content' => 'See README.md for next steps and recommendations',
         ]);
 
-        NoteFactory::new()->count(3)->create();
+        NoteFactory::new()->count(4)->create();
     }
 }

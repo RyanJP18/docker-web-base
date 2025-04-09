@@ -1,0 +1,14 @@
+a, a:visited, a:hover, a:active {
+    color: #17d4b4;
+}
+
+button {
+    outline: none;
+    border: 0;
+}
+
+input, textarea {
+    outline: none;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}

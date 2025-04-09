@@ -19,11 +19,11 @@
 	padding-right: 20px;
 
 	& span {
-		color: #0e7f6c;
+		color: #17d4b4;
 	}
 
 	&_main {
-		font-size: 23px;
+		font-size: 24px;
 		flex-grow: 1;
 	}
 

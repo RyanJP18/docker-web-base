@@ -29,13 +29,15 @@ const submit = () => {
 <template>
     <div class="dwb-nc" @click="editCard = !editCard" @keydown.enter="submit">
         <div v-if="!editCard">
-            <p>{{ title }}</p>
+            <div class="dwb-nc_Header">
+                <p>{{ title }}</p>
+                <button @click.stop="emit('remove', note)">✖</button>
+            </div>
             <p>{{ content }}</p>
-            <button @click.stop="emit('remove', note)">X</button>
         </div>
-        <div @click.stop v-else>
+        <div class="dwb-nc_Edit" @click.stop v-else>
             <input v-model="title" placeholder="Title" />
-            <input v-model="content" placeholder="Content" />
+            <textarea v-model="content" placeholder="Content" rows="5"/>
             <button @click="submit">Submit</button>
         </div>
     </div>
@@ -50,37 +52,69 @@ const submit = () => {
     width: 260px;
     height: 200px;
     background-color: white;
-    border: 1px solid lightgray;
-    padding: 8px;
+    border: 1px solid #eee;
+    padding: 10px;
     border-radius: 8px;
     font-size: 13px;
     overflow: hidden;
     cursor: pointer;
 
-    & p:first-of-type {
-        font-weight: bold;
-        margin-bottom: 8px;
-        font-size: 18px;
+    &:hover {
+        background-color: #baf7ed;
     }
 
-    & button {
-        background-color: red;
-        padding: 0;
-        width: 30px;
-        line-height: 13px;
-        height: 18px;
-        color: white;
-        font-size: 13px;
-        font-weight: bold;
-    }
+    &_Header {
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
 
-    & input {
-        width: 100%;
-
-        &:first-of-type {
+        & > p {
             font-weight: bold;
-            margin-bottom: 8px;
+            font-size: 20px;
+            color: #0e7f6c;
+        }
+
+        & > button {
+            background-color: red;
+            font-size: 14px;
+            width: 30px;
+            color: white;
+            font-weight: bold;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: firebrick;
+            }
+        }
+    }
+
+    &_Edit {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    
+        & > input {
+            width: 100%;
+            font-weight: bold;
             font-size: 18px;
+            color: #0e7f6c;
+        }
+
+        & > textarea {
+            width: 100%;
+        }
+
+        & > button {
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #0e7f6c;
+            border-radius: 6px;
+            color: white;
+            padding: 6px;
         }
     }
 }
