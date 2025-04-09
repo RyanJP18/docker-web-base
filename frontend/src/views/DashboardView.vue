@@ -5,12 +5,13 @@ import NoteCard from "@/components/NoteCard.vue";
 import NewNote from "@/components/NewNote.vue";
 import type { INote } from "@/interfaces/INote";
 
+
 const notes = ref([] as INote[]);
 const loading = ref(true);
 
 const apiPath = "http://localhost:8000/api";
 const headers = {
-    Accept: "application/json",
+    "Accept": "application/json",
     "Content-Type": "application/json;charset=UTF-8",
 };
 
@@ -21,15 +22,14 @@ const filteredNotes = computed(() =>
         note.content.toLowerCase().includes(search.value.toLowerCase()))
 );
 
+
 const pullNotes = async () => {
     loading.value = true;
     fetch(apiPath + "/notes", { method: "GET", headers: headers })
         .then((response) => {
             if (!response.ok) {
                 return response.text().then((text) => {
-                    throw new Error(
-                        `Error --- Status: ${response.status} | Message: ${text}`
-                    );
+                    throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
                 });
             }
             return response.json();
@@ -49,9 +49,7 @@ const uploadNote = async (note: INote) => {
         .then((response) => {
             if (!response.ok) {
                 return response.text().then((text) => {
-                    throw new Error(
-                        `Error --- Status: ${response.status} | Message: ${text}`
-                    );
+                    throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
                 });
             }
             return response.json();
@@ -71,9 +69,7 @@ const updateNote = async (note: INote) => {
         .then((response) => {
             if (!response.ok) {
                 return response.text().then((text) => {
-                    throw new Error(
-                        `Error --- Status: ${response.status} | Message: ${text}`
-                    );
+                    throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
                 });
             }
             return response.json();
@@ -89,9 +85,7 @@ const removeNote = async (note: INote) => {
         .then((response) => {
             if (!response.ok) {
                 return response.text().then((text) => {
-                    throw new Error(
-                        `Error --- Status: ${response.status} | Message: ${text}`
-                    );
+                    throw new Error(`Error --- Status: ${response.status} | Message: ${text}`);
                 });
             }
 
@@ -101,7 +95,9 @@ const removeNote = async (note: INote) => {
         .finally(() => (loading.value = false));
 };
 
+
 onBeforeMount(() => pullNotes());
+
 </script>
 
 

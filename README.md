@@ -11,8 +11,8 @@
   - [Generate SSL Certificates](#generate-ssl-certificates)
 
 # About
-This is a base for automatically setting up a Docker / TypeScript / Vue / PHP / Laravel stack. It will produce `frontend`, `backend`, `database` and `database-viewer` containers, all within the same docker network, and with communication between them set up in a fairly default state.
-
+This is a base for automatically constructing a Docker network consisting of a TypeScript/Vue SPA and headless PHP/Laravel API. It will produce `frontend`, `backend`, `database` and `database-viewer` containers, all within the same docker network, and with communication between them set up in a fairly default state.
+ 
 # First Time Setup
 It is recommended that prior to making any significant changes, you complete these steps to run the app and test it works:
 1) Install the `docker` and `docker-compose` packages if you do not already have them

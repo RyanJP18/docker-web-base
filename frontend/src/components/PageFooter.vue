@@ -2,7 +2,7 @@
     <div class="dwb-pf">
         <div class="dwb-pf_Block">
             <p class="dwb-pf_Block_Header">About</p>
-            <p class="dwb-pf_Block_Link">This is a base project for a Docker / Vue / TypeScript / Laravel / PHP stack with basic configuration, testing and deployment.</p>
+            <p class="dwb-pf_Block_Link">This is a base for automatically constructing a Docker network consisting of a TypeScript/Vue SPA and headless PHP/Laravel API with basic configuration, testing and deployment.</p>
         </div>
         <div class="dwb-pf_Block">
             <p class="dwb-pf_Block_Header">Bugs & Requests</p>
